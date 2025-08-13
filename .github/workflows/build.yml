@@ -3,19 +3,32 @@ name: Build ZMK (nice_nano_v2 + reviung5)
 on:
   push:
   pull_request:
-  workflow_dispatch:   # lets you trigger a manual build from the Actions tab
+  workflow_dispatch:
+    inputs:
+      board:
+        description: 'Zephyr board name'
+        default: nice_nano_v2
+        required: false
+      shield:
+        description: 'ZMK shield name'
+        default: reviung5
+        required: false
+      zmk_ref:
+        description: 'ZMK branch/tag/commit'
+        default: main
+        required: false
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
-    # This container includes west, Zephyr, toolchains, dtc, etc.
+    # Prebuilt environment with west, dtc, Zephyr SDK/toolchains, etc.
     container: zmkfirmware/zmk-build-arm:stable
 
     env:
-      BOARD: nice_nano_v2
-      SHIELD: reviung5
-      ZMK_REF: main  # change if you want to pin a specific ZMK commit or branch
+      BOARD: ${{ inputs.board  || 'nice_nano_v2' }}
+      SHIELD: ${{ inputs.shield || 'reviung5' }}
+      ZMK_REF: ${{ inputs.zmk_ref || 'main' }}
 
     steps:
       - name: Checkout zmk-config
@@ -24,21 +37,27 @@ jobs:
       - name: Show repo layout (debug)
         run: |
           pwd
-          tree -L 3 || true
+          ls -la
+          echo "---- config/"
           ls -la config || true
+          echo "---- boards/"
           ls -la boards || true
 
-      - name: Initialize west workspace with ZMK
+      - name: Clean any previous west workspace
         run: |
-          west init -m https://github.com/zmkfirmware/zmk --mr "$ZMK_REF"
+          rm -rf .west build
+
+      - name: Initialize west workspace (ZMK manifest lives at app/west.yml)
+        run: |
+          west init -m https://github.com/zmkfirmware/zmk --mr "$ZMK_REF" --mf app/west.yml
           west update
           west zephyr-export
 
-      - name: Pristine build
+      - name: Pristine build (uses this repo's config/)
         run: |
-          west build -s zmk/app -d build/$BOARD-$SHIELD -p always -b $BOARD -- \
-            -DSHIELD=$SHIELD \
-            -DZMK_CONFIG=$GITHUB_WORKSPACE/config
+          west build -s zmk/app -d build/$BOARD-$SHIELD -p always -b "$BOARD" -- \
+            -DSHIELD="$SHIELD" \
+            -DZMK_CONFIG="$GITHUB_WORKSPACE/config"
 
       - name: Package artifacts
         run: |
@@ -50,6 +69,6 @@ jobs:
       - name: Upload firmware
         uses: actions/upload-artifact@v4
         with:
-          name: firmware-$BOARD-$SHIELD
+          name: firmware-${{ env.BOARD }}-${{ env.SHIELD }}
           path: artifacts/*
           if-no-files-found: error
