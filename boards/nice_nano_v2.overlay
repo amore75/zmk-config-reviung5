@@ -1,0 +1,19 @@
+/*
+ * Disable RGB/underglow on nice_nano_v2
+ * Works with SuperMini nRF52840; avoids any pin conflicts.
+ *
+ * Copyright (c) 2024
+ * SPDX-License-Identifier: MIT
+ */
+
+/* Make sure the SPI3 peripheral used for WS2812 is off */
+&spi3 {
+    status = "disabled";
+};
+
+/* Remove any underglow selection if it was set elsewhere */
+ / {
+    chosen {
+        /delete-property/ zmk,underglow;
+    };
+};
