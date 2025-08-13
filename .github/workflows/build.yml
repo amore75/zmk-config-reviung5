@@ -1,6 +1,55 @@
-name: Build ZMK firmware
-on: [push, pull_request, workflow_dispatch]
+name: Build ZMK (nice_nano_v2 + reviung5)
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:   # lets you trigger a manual build from the Actions tab
 
 jobs:
   build:
-    uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@v0.3
+    runs-on: ubuntu-latest
+
+    # This container includes west, Zephyr, toolchains, dtc, etc.
+    container: zmkfirmware/zmk-build-arm:stable
+
+    env:
+      BOARD: nice_nano_v2
+      SHIELD: reviung5
+      ZMK_REF: main  # change if you want to pin a specific ZMK commit or branch
+
+    steps:
+      - name: Checkout zmk-config
+        uses: actions/checkout@v4
+
+      - name: Show repo layout (debug)
+        run: |
+          pwd
+          tree -L 3 || true
+          ls -la config || true
+          ls -la boards || true
+
+      - name: Initialize west workspace with ZMK
+        run: |
+          west init -m https://github.com/zmkfirmware/zmk --mr "$ZMK_REF"
+          west update
+          west zephyr-export
+
+      - name: Pristine build
+        run: |
+          west build -s zmk/app -d build/$BOARD-$SHIELD -p always -b $BOARD -- \
+            -DSHIELD=$SHIELD \
+            -DZMK_CONFIG=$GITHUB_WORKSPACE/config
+
+      - name: Package artifacts
+        run: |
+          mkdir -p artifacts
+          cp build/$BOARD-$SHIELD/zephyr/zmk.uf2 artifacts/zmk-$BOARD-$SHIELD.uf2
+          cp build/$BOARD-$SHIELD/zephyr/zmk.hex artifacts/zmk-$BOARD-$SHIELD.hex
+          cp build/$BOARD-$SHIELD/zephyr/zephyr.dts artifacts/zephyr-$BOARD-$SHIELD.dts
+
+      - name: Upload firmware
+        uses: actions/upload-artifact@v4
+        with:
+          name: firmware-$BOARD-$SHIELD
+          path: artifacts/*
+          if-no-files-found: error
