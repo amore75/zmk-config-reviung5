@@ -1,7 +1,7 @@
 /*
  * nice_nano_v2 overlay — OLED enabled, RGB disabled
  * OLED: SSD1306 128x32 over I²C @ 0x3C
- * I²C pins (per your schematic): SDA=P1.02, SCL=P1.01
+ * I²C pins: SDA=P1.02, SCL=P1.01
  */
 
 /* Ensure WS2812 underglow (SPI3) is disabled */
@@ -9,12 +9,12 @@
     status = "disabled";
 };
 
-/* Re-route I²C0 to P1.02 (SDA) and P1.01 (SCL) */
+/* Route I²C0 to P1.02 (SDA) and P1.01 (SCL) */
 &pinctrl {
     i2c0_default: i2c0_default {
         group1 {
-            psels = <NRF_PSEL(TWIM_SDA, 1, 2)>,  /* SDA -> P1.02 */
-                    <NRF_PSEL(TWIM_SCL, 1, 1)>;  /* SCL -> P1.01 */
+            psels = <NRF_PSEL(TWIM_SDA, 1, 2)>,
+                    <NRF_PSEL(TWIM_SCL, 1, 1)>;
         };
     };
 
@@ -36,31 +36,30 @@
 
     ssd1306: ssd1306@3c {
         compatible = "solomon,ssd1306fb-i2c";
-        reg = <0x3c>;      /* change to <0x3d> if your module is jumpered to 0x3D */
+        reg = <0x3c>;
         width = <128>;
-        height = <32>;     /* use <64> if your panel is 128x64 */
+        height = <32>;
 
-        /* Required by Zephyr 3.5+ bindings */
+        /* Required by current bindings */
         segment-offset = <0>;
+        page-offset    = <0>;
+        display-offset = <0>;
 
-        /* Typical orientation for these modules */
+        /* Common orientation */
         segment-remap;
         com-invdir;
 
-        /* Optional tuning (defaults are usually fine)
-         * display-offset = <0>;
-         * page-offset    = <0>;
-         * prechargep     = <0x22>;
+        status = "okay";
+
+        /* Optional tuning:
+         * prechargep = <0x22>;
          */
     };
 };
 
  / {
     chosen {
-        /* Make sure no RGB underglow is selected */
-        /delete-property/ zmk,underglow;
-
-        /* Use the SSD1306 as the system/ZMK status display */
+        /delete-property/ zmk,underglow; /* ensure no RGB */
         zephyr,display = &ssd1306;
         zmk,display    = &ssd1306;
     };
