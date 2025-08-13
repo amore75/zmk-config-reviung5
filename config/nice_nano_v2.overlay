@@ -1,17 +1,10 @@
 /*
  * nice_nano_v2 overlay — OLED enabled, RGB disabled
- * Board: nice_nano_v2 (works for SuperMini nRF52840 too)
- *
- * - Adds SSD1306 128x32 OLED over I²C (addr 0x3C)
- * - Disables WS2812 underglow (SPI3) to prevent pin conflicts
- * - Selects the OLED as the display for Zephyr/ZMK
- *
- * Wiring (Pro Micro header):
- *   SDA -> D2,  SCL -> D3
- * Power the OLED at 3.3V. If your module has no pull-ups, add 4.7–10k to 3.3V on SDA/SCL.
+ * OLED: SSD1306 128x32 over I²C @ 0x3C
+ * Works with SuperMini nRF52840 (build as -b nice_nano_v2)
  */
 
-/* Keep underglow off (no WS2812 on SPI3) */
+/* Make sure WS2812 underglow (SPI3) stays off */
 &spi3 {
     status = "disabled";
 };
@@ -20,14 +13,17 @@
     status = "okay";
     clock-frequency = <I2C_BITRATE_STANDARD>;  /* 100 kHz */
 
-    /* 0.91" SSD1306 OLED, typically 128x32 at address 0x3C */
+    /* 0.91" SSD1306 module (commonly 128x32 at address 0x3C) */
     ssd1306: ssd1306@3c {
-        compatible = "solomon,ssd1306fb";
+        compatible = "solomon,ssd1306fb-i2c";
         reg = <0x3c>;      /* change to <0x3d> if your board is jumpered to 0x3D */
         width = <128>;
-        height = <32>;     /* use <64> for a 128x64 panel */
+        height = <32>;     /* use <64> if your panel is 128x64 */
 
-        /* Common orientation settings for most breakout boards */
+        /* Required by Zephyr 3.5 binding */
+        segment-offset = <0>;
+
+        /* Typical orientation flags for these modules */
         segment-remap;
         com-invdir;
 
@@ -44,7 +40,7 @@
         /* Ensure no underglow is selected anywhere */
         /delete-property/ zmk,underglow;
 
-        /* Tell Zephyr/ZMK to use the OLED as the system/status display */
+        /* Use the SSD1306 as the system/ZMK status display */
         zephyr,display = &ssd1306;
         zmk,display    = &ssd1306;
     };
