@@ -1,0 +1,38 @@
+/* nice_nano_v2 overlay for Reviung5 — SSD1306 128x32 over I2C @ 0x3C */
+
+&i2c0 {
+    status = "okay";
+    clock-frequency = <I2C_BITRATE_STANDARD>;   /* 100 kHz; safe default */
+
+    /* Single OLED node (no duplicates elsewhere!) */
+    oled: ssd1306@3c {
+        /* Include both compatibles: generic + I2C variant */
+        compatible = "solomon,ssd1306fb", "solomon,ssd1306fb-i2c";
+        reg = <0x3c>;
+        status = "okay";
+
+        /* Panel geometry */
+        width  = <128>;
+        height = <32>;
+
+        /* Required by binding for 32-row glass */
+        multiplex-ratio = <31>;      /* 0x1F */
+        display-offset  = <0>;
+        segment-offset  = <0>;
+
+        /* Typical keyboard orientation */
+        segment-remap;
+        com-invdir;
+
+        /* Common, stable defaults for many 128x32 modules */
+        prechargep = <0xF1>;
+        vcomh      = <0x30>;
+        contrast   = <0x7F>;
+        page-offset = <0>;
+    };
+};
+
+/* Tell Zephyr/LVGL which display to use */
+&{/chosen} {
+    zephyr,display = &oled;
+}

@@ -1,9 +1,9 @@
-# Copyright (c) 2022 The ZMK Contributors
-# SPDX-License-Identifier: MIT
+# Default the display on for this shield; honors DT and avoids the long warning.
+config ZMK_DISPLAY
+    default y if SHIELD_REVIUNG5
 
-if SHIELD_REVIUNG5
+config DISPLAY
+    default y if SHIELD_REVIUNG5
 
-config ZMK_KEYBOARD_NAME
-    default "Reviung5"
-
-endif
+config SSD1306
+    default y if SHIELD_REVIUNG5 && DISPLAY
