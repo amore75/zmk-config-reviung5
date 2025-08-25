@@ -1,13 +1,6 @@
-name: ZMK Build
-on: [push, pull_request]
+name: Build ZMK firmware
+on: [push, pull_request, workflow_dispatch]
+
 jobs:
   build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: zmkfirmware/zmk-build@v1
-        with:
-          config_path: config
-          board: nice_nano_v2
-          shield: numpad5x6
-          # Do NOT set "modules" and do NOT set cmake-args with -DZMK_EXTRA_MODULES
+    uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@v0.2
