@@ -10,7 +10,7 @@
      * P0.13 drives the VCC MOSFET (HIGH = off). We invert with ACTIVE_LOW so
      * "active" means the rail is ON.
      */
-    ext_power: ext_power {
+    vcc_power: ext_power {
         compatible = "zmk,ext-power-generic";
         control-gpios = <&gpio0 13 GPIO_ACTIVE_LOW>;
         init-delay-ms = <0>;
