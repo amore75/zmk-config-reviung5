@@ -1,9 +1,19 @@
 /* SPDX-License-Identifier: MIT */
 
 / {
-    /* Tell ZMK which display node to use */
+    /* Tell ZMK which display to use */
     chosen {
         zmk,display = &oled;
+    };
+
+    /* External power rail control (nice!nano v2)
+     * P0.13 drives the VCC MOSFET (HIGH = off). We invert with ACTIVE_LOW so
+     * "active" means the rail is ON.
+     */
+    ext_power: ext_power {
+        compatible = "zmk,ext-power-generic";
+        control-gpios = <&gpio0 13 GPIO_ACTIVE_LOW>;
+        init-delay-ms = <0>;
     };
 };
 
@@ -33,7 +43,7 @@
 
     clock-frequency = <I2C_BITRATE_FAST>;
 
-    /* Most 0.91" 128x32 OLEDs are 0x3C */
+    /* Most 0.91" 128x32 OLEDs use address 0x3C */
     oled: ssd1306@3c {
         compatible = "solomon,ssd1306fb-i2c";
         reg = <0x3c>;
@@ -41,7 +51,7 @@
         height = <32>;
         segment-offset = <0>;   /* required by the i2c binding */
 
-        /* If your module has RESET wired, uncomment and set the correct pin:
+        /* If your module has RESET wired, uncomment and set the pin:
          * reset-gpios = <&gpio0 10 GPIO_ACTIVE_LOW>;
          */
     };
