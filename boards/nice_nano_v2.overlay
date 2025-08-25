@@ -1,10 +1,8 @@
 /*
- * Copyright (c) 2024 The ZMK Contributors
- *
  * SPDX-License-Identifier: MIT
  */
 
-/ {
+ / {
     chosen {
         zmk,display = &oled;
     };
@@ -37,7 +35,7 @@
 
     oled: ssd1306@3c {
         compatible = "solomon,ssd1306fb";
-        reg = <0x3c>;     /* Most 0.91" OLEDs use 0x3C */
+        reg = <0x3c>;       /* Most 0.91" OLEDs use 0x3C */
         width = <128>;
         height = <32>;
     };

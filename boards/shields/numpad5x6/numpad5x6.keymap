@@ -6,19 +6,20 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
 
-/ {
+ / {
     keymap {
         compatible = "zmk,keymap";
 
-        base_layer {
+        /* The first layer must be named exactly "default_layer" */
+        default_layer {
             display-name = "BASE";
             bindings = <
-                 /* Row 0 */ &trans               &trans                &trans                &trans          &trans
-        /* Row 1 */ &kp C_UNDO           &kp KP_LEFT_PARENTHESIS  &kp KP_RIGHT_PARENTHESIS  &kp KP_DIVIDE   &kp KP_MULTIPLY
-        /* Row 2 */ &kp C_COPY           &kp N7                &kp N8                &kp N9          &kp KP_MINUS
-        /* Row 3 */ &kp C_PASTE          &kp N4                &kp N5                &kp N6          &kp KP_PLUS
-        /* Row 4 */ &kp DEL              &kp N1                &kp N2                &kp N3          &kp KP_ENTER
-        /* Row 5 */ &kp BSPC             &kp KP_N0             &kp COMMA             &kp KP_DOT      &kp KP_ENTER
+                 /* Row 0 */ &trans              &trans                 &trans                	 &trans          &trans
+				 /* Row 1 */ &kp LC(Z)           &kp LEFT_PAREN         &kp RIGHT_PAREN          &kp KP_SLASH    &kp KP_ASTERISK
+				 /* Row 2 */ &kp LC(C)           &kp N7                 &kp N8                   &kp N9          &kp KP_MINUS
+				 /* Row 3 */ &kp LC(V)           &kp N4                 &kp N5                   &kp N6          &kp KP_PLUS
+				 /* Row 4 */ &kp DEL             &kp N1                 &kp N2                   &kp N3          &kp KP_ENTER
+				 /* Row 5 */ &kp BSPC            &kp KP_N0              &kp COMMA                &kp KP_DOT      &kp KP_ENTER
             >;
         };
 

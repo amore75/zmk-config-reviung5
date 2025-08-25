@@ -1,9 +1,8 @@
-# Copyright (c) 2022 The ZMK Contributors
 # SPDX-License-Identifier: MIT
 
 if SHIELD_NUMPAD5X6
 
 config ZMK_KEYBOARD_NAME
-    default "Numpad 5x6"
+    default "numpad5x6"
 
 endif
