@@ -3,7 +3,6 @@
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
-#include <dt-bindings/zmk/ext_power.h>
 
  / {
     keymap {
@@ -25,12 +24,12 @@
         ble_layer {
             display-name = "BLE";
             bindings = <
-                /* R0 */ &ext_power EP_TOG  &bt BT_PRV &bt BT_NXT &bt BT_CLR &trans
-                /* R1 */ &trans             &trans     &trans     &trans     &trans
-                /* R2 */ &trans             &trans     &trans     &trans     &trans
-                /* R3 */ &trans             &trans     &trans     &trans     &trans
-                /* R4 */ &trans             &trans     &trans     &trans     &trans
-                /* R5 */ &trans             &trans     &trans     &trans     &trans
+                /* R0 */ &trans         &bt BT_PRV &bt BT_NXT &bt BT_CLR &trans
+                /* R1 */ &trans         &trans     &trans     &trans     &trans
+                /* R2 */ &trans         &trans     &trans     &trans     &trans
+                /* R3 */ &trans         &trans     &trans     &trans     &trans
+                /* R4 */ &trans         &trans     &trans     &trans     &trans
+                /* R5 */ &trans         &trans     &trans     &trans     &trans
             >;
         };
     };
