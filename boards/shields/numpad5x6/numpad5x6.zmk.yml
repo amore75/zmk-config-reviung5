@@ -3,7 +3,7 @@ id: numpad5x6
 name: Numpad 5x6
 type: shield
 url: https://github.com/gtips/reviung/tree/master/reviung5
-requires: [nice_nano_v2]  # SuperMini compatible
+requires: [nice_nano_v2]
 
 features:
   - keys
