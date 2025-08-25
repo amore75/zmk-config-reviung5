@@ -1,7 +1,7 @@
 /* SPDX-License-Identifier: MIT */
 
 / {
-    /* Tell ZMK which display to use */
+   
     chosen {
         zmk,display = &oled;
     };
