@@ -1,13 +1,13 @@
-/*
- * SPDX-License-Identifier: MIT
- */
+/* SPDX-License-Identifier: MIT */
 
- / {
+/ {
+    /* Tell ZMK which display node to use */
     chosen {
         zmk,display = &oled;
     };
 };
 
+/* I²C pins for nice!nano v2: SCL=P0.27, SDA=P0.26 */
 &pinctrl {
     i2c0_default: i2c0_default {
         group1 {
@@ -33,10 +33,16 @@
 
     clock-frequency = <I2C_BITRATE_FAST>;
 
+    /* Most 0.91" 128x32 OLEDs are 0x3C */
     oled: ssd1306@3c {
-        compatible = "solomon,ssd1306fb";
-        reg = <0x3c>;       /* Most 0.91" OLEDs use 0x3C */
+        compatible = "solomon,ssd1306fb-i2c";
+        reg = <0x3c>;
         width = <128>;
         height = <32>;
+        segment-offset = <0>;   /* required by the i2c binding */
+
+        /* If your module has RESET wired, uncomment and set the correct pin:
+         * reset-gpios = <&gpio0 10 GPIO_ACTIVE_LOW>;
+         */
     };
 };
