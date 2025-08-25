@@ -1,0 +1,9 @@
+file_format: "1"
+id: numpad5x6
+name: "Numpad 5x6"
+type: shield
+features: [keys, display]
+# Keep this only if you want to restrict the shield to this board:
+requires: [nice_nano_v2]
+# Optional: set to your repo/readme or leave empty
+url: ""
