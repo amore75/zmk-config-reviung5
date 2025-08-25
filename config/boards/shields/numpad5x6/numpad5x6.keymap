@@ -12,12 +12,12 @@
         default_layer {
             display-name = "BASE";
             bindings = <
-                /* R0 */ &trans   &trans    &trans        &trans        &trans
-                /* R1 */ &kp N7   &kp N8    &kp N9        &kp KP_SLASH  &kp KP_ASTERISK
-                /* R2 */ &kp N4   &kp N5    &kp N6        &kp KP_MINUS  &kp TAB
-                /* R3 */ &kp N1   &kp N2    &kp N3        &kp KP_PLUS   &kp ENTER
-                /* R4 */ &kp N0   &kp COMMA &kp DOT       &kp MINUS     &kp EQUAL
-                /* R5 */ &kp BSPC &kp DEL   &kp ESC       &kp LEFT      &kp RIGHT
+                /* R0 */ &kp K_CALC   &trans    &trans        &trans        &trans
+                /* R1 */ &kp K_UNDO   &kp LS(N9)    &kp LS(N0)        &kp KP_SLASH  &kp KP_ASTERISK 
+                /* R2 */ &kp K_PASTE   &kp N7    &kp N8        &kp N9  &kp KP_MINUS
+                /* R3 */ &kp K_COPY   &kp N4    &kp N5       &kp N6   &kp KP_PLUS
+                /* R4 */ &kp DEL  &kp N1 &kp N2       &kp N3     &kp ENTER
+                /* R5 */ &kp BSPC &kp N0   &kp COMMA      &kp DOT      &kp ENTER
             >;
         };
 
