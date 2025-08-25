@@ -5,7 +5,7 @@ manifest:
   projects:
     - name: zmk
       remote: zmkfirmware
-      revision: v0.2     # or "main" if you want latest
+      revision: v0.2   # pin; or use main
       import: app/west.yml
   self:
     path: config
