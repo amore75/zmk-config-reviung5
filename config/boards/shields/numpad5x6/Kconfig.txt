@@ -3,6 +3,6 @@
 if SHIELD_NUMPAD5X6
 
 config ZMK_KEYBOARD_NAME
-    default "numpad5x6"
+    default "Numpad 5x6"
 
 endif
