@@ -16,7 +16,7 @@
                 <&kp LEFT_GUI &kp R>,
                 <&macro_release>,
                 <&kp LEFT_GUI>,
-                <&macro_wait_time 260>,
+                <&macro_wait_time 300>,
                 <&kp C &kp A &kp L &kp C>,
                 <&macro_wait_time 180>,
                 <&kp ENTER>;
