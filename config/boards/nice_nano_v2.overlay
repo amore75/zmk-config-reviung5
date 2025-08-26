@@ -1,0 +1,13 @@
+/* Battery readout via nRF VDDH */
+
+ / {
+    /* Tell ZMK which sensor to use for battery level */
+    chosen {
+        zmk,battery = &vddh_batt;
+    }
+
+    /* nRF VDDH battery sensor (no extra config required) */
+    vddh_batt: vddh_batt {
+        compatible = "zmk,battery-nrf-vddh";
+    };
+};
