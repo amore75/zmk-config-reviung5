@@ -13,7 +13,7 @@
             wait-ms = <100>;
             bindings =
                 <&kp LG(R)>,
-                <&macro_wait_time 500>,
+                <&macro_wait_time 300>,
                 <&kp C &kp A &kp L &kp C>,
                 <&macro_wait_time 500>,
                 <&kp ENTER>;
@@ -28,7 +28,7 @@
         default_layer {
             display-name = "BASE";
             bindings = <
-&launch_calc_search  &trans      &trans      &trans         &trans
+&launch_calc_search  &mo 1       &trans      &trans         &trans
 &kp LC(Z)            &kp LS(N9)  &kp LS(N0)  &kp KP_DIVIDE  &kp KP_MULTIPLY
 &kp LC(V)            &kp N7      &kp N8      &kp N9         &kp KP_MINUS
 &kp LC(C)            &kp N4      &kp N5      &kp N6         &kp KP_PLUS
