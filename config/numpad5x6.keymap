@@ -13,13 +13,12 @@
             #binding-cells = <0>;
             bindings =
                 <&macro_press>,
-                <&kp LG(R)>,
+                <&kp LEFT_GUI &kp R>,
                 <&macro_release>,
-                <&macro_wait_time 220>,
+                <&kp LEFT_GUI>,
+                <&macro_wait_time 260>,
                 <&kp C &kp A &kp L &kp C>,
-                <&macro_wait_time 100>,
-                <&kp ENTER>,
-                <&macro_wait_time 220>,
+                <&macro_wait_time 180>,
                 <&kp ENTER>;
 
             label = "CALC";
