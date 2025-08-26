@@ -12,7 +12,6 @@
             tap-ms  = <60>;
             wait-ms = <100>;
             bindings = <
-                /* Win+R with explicit press/release of BOTH keys */
                 &macro_press
                     &kp LEFT_GUI
                     &kp R
@@ -20,16 +19,10 @@
                     &kp R
                     &kp LEFT_GUI
 
-                /* Give Run time to focus */
                 &macro_wait_time 500
-
-                /* Type calc (string helper is most reliable) */
                 &macro_tap "calc"
-
-                /* Let text settle */
                 &macro_wait_time 300
 
-                /* Move focus to OK and press it */
                 &kp TAB
                 &macro_wait_time 150
                 &macro_tap_time 100
@@ -37,6 +30,7 @@
             >;
         };
     };
+
     keymap {
         compatible = "zmk,keymap";
 
@@ -45,12 +39,12 @@
         default_layer {
             display-name = "BASE";
             bindings = <
-&kp K_CALCULATOR  &trans     &trans      &trans         &trans
-&kp LC(Z)         &kp LS(N9) &kp LS(N0)  &kp KP_DIVIDE  &kp KP_MULTIPLY
-&kp LC(V)         &kp N7     &kp N8      &kp N9         &kp KP_MINUS
-&kp LC(C)         &kp N4     &kp N5      &kp N6         &kp KP_PLUS
-&kp DEL           &kp N1     &kp N2      &kp N3         &kp KP_ENTER
-&kp BSPC          &kp KP_N0  &kp COMMA   &kp KP_DOT     &kp KP_ENTER
+&launch_calc    &trans     &trans      &trans         &trans
+&kp LC(Z)       &kp LS(N9) &kp LS(N0)  &kp KP_DIVIDE  &kp KP_MULTIPLY
+&kp LC(V)       &kp N7     &kp N8      &kp N9         &kp KP_MINUS
+&kp LC(C)       &kp N4     &kp N5      &kp N6         &kp KP_PLUS
+&kp DEL         &kp N1     &kp N2      &kp N3         &kp KP_ENTER
+&kp BSPC        &kp KP_N0  &kp COMMA   &kp KP_DOT     &kp KP_ENTER
             >;
         };
 
