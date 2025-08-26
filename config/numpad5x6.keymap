@@ -8,25 +8,22 @@
     /* Windows Calculator macro: Win+R → "calc" → Enter */
 
     macros {
-      launch_calc: launch_calc {
-  compatible = "zmk,behavior-macro";
-  #binding-cells = <0>;
-  tap-ms = <60>;
-  wait-ms = <100>;
-
-  bindings = <
-    &macro_press   &kp LG
-                   &kp R
-    &macro_release &kp R  &kp LG
-
-    &macro_wait_time 400
-    &macro_tap "calc"
-    &macro_wait_time 250
-    &kp TAB
-    &macro_wait_time 120
-    &kp ENTER
-
-            label = "CALC";
+        launch_calc: launch_calc {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            tap-ms = <60>;
+            wait-ms = <100>;
+            bindings =
+                <&macro_press>,
+                <&kp LEFT_GUI &kp R>,
+                <&macro_release>,
+                <&kp R &kp LEFT_GUI>,
+                <&macro_wait_time 400>,
+                <&kp C &kp A &kp L &kp C>,
+                <&macro_wait_time 250>,
+                <&kp TAB>,
+                <&macro_wait_time 120>,
+                <&kp ENTER>;
         };
     };
 
