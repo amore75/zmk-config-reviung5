@@ -12,9 +12,9 @@
             tap-ms = <60>;
             wait-ms = <100>;
             bindings =
-                <&kp LG(S)>,
+                <&kp LG(R)>,
                 <&macro_wait_time 500>,
-                <&kp W &kp I &kp N &kp D &kp O &kp W &kp S &kp SPACE &kp C &kp A &kp L &kp C>,
+                <&kp C &kp A &kp L &kp C>,
                 <&macro_wait_time 500>,
                 <&kp ENTER>;
         };
