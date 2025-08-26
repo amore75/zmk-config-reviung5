@@ -18,6 +18,8 @@
                 <&macro_wait_time 220>,
                 <&kp C &kp A &kp L &kp C>,
                 <&macro_wait_time 100>,
+                <&kp ENTER>,
+                <&macro_wait_time 220>,
                 <&kp ENTER>;
 
             label = "CALC";
