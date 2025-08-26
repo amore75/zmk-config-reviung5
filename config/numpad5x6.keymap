@@ -13,19 +13,19 @@
             wait-ms = <100>;
             bindings = <
                 &macro_press
-                    &kp LEFT_GUI
+                    &kp LGUI
                     &kp R
                 &macro_release
                     &kp R
-                    &kp LEFT_GUI
+                    &kp LGUI
 
                 &macro_wait_time 500
-                &macro_tap "calc"
-                &macro_wait_time 300
 
+                &kp C &kp A &kp L &kp C
+
+                &macro_wait_time 300
                 &kp TAB
                 &macro_wait_time 150
-                &macro_tap_time 100
                 &kp ENTER
             >;
         };
