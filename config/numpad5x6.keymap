@@ -20,7 +20,7 @@
                 <&kp R &kp LEFT_GUI>,
                 <&macro_wait_time 400>,
                 <&kp C &kp A &kp L &kp C>,
-                <&macro_wait_time 250>,
+                <&macro_wait_time 300>,
                 <&kp TAB>,
                 <&macro_wait_time 120>,
                 <&kp ENTER>;
