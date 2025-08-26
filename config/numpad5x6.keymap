@@ -16,7 +16,7 @@
             bindings =
                 <&kp LG(R)>,
                 <&macro_wait_time 150>,
-                <&kp C &kp A &kp L &kp C &kp ENTER>;
+                <&kp C &kp A &kp L &kp C &kp ENTER &kp ENTER>;
         };
     };
 
