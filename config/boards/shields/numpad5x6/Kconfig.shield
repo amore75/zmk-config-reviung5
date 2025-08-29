@@ -2,4 +2,3 @@
 
 config SHIELD_NUMPAD5X6
     def_bool $(shields_list_contains,numpad5x6)
-    select ZMK_KEYBOARD_SHIELD
