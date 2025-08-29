@@ -1,4 +1,26 @@
-keymap {
+/* SPDX-License-Identifier: MIT */
+
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/keys.h>
+
+/ {
+    macros {
+        launch_calc_search: launch_calc_search {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            tap-ms = <60>;
+            wait-ms = <100>;
+            bindings =
+                <&kp LG(R)>,
+                <&macro_wait_time 300>,
+                <&kp C &kp A &kp L &kp C>,
+                <&macro_wait_time 500>,
+                <&kp ENTER>;
+        };
+    };
+
+  keymap {
     compatible = "zmk,keymap";
 
     /* 5 columns x 6 rows = 30 bindings per layer */
@@ -23,6 +45,7 @@ keymap {
         &trans               &trans      &trans      &trans      &trans
         &trans               &trans      &trans      &trans      &trans
         &trans               &trans      &trans      &trans      &trans
-        >;
+            >;
+        };
     };
 };
