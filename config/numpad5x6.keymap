@@ -20,31 +20,32 @@
         };
     };
 
-  keymap {
-    compatible = "zmk,keymap";
+    keymap {
+        compatible = "zmk,keymap";
 
-    /* 5 columns x 6 rows = 30 bindings per layer */
-    default_layer {
-        display-name = "BASE";
-        bindings = <
-        /* R0 */  &launch_calc    &trans        &trans          &trans         &trans
-        /* R1 */  &kp LC(Z)       &kp LS(N9)    &kp LS(N0)      &kp KP_DIVIDE  &kp KP_MULTIPLY
-        /* R2 */  &kp LC(V)       &kp N7        &kp N8          &kp N9         &kp KP_MINUS
-        /* R3 */  &kp LC(C)       &kp N4        &kp N5          &kp N6         &kp KP_PLUS
-        /* R4 */  &kp DEL         &bt BT_CLR    &kp N2          &kp N3         &kp KP_ENTER
-        /* R5 */  &kp BSPC        &kp KP_N0     &kp COMMA       &kp KP_DOT     &kp KP_ENTER
-        >;
-    };
+        /* 5 columns x 6 rows = 30 bindings per layer */
 
-    ble_layer {
-        display-name = "BLE";
-        bindings = <
-        &kp C_AL_CALCULATOR  &bt BT_PRV  &bt BT_NXT  &bt BT_CLR  &trans
-        &trans               &trans      &trans      &trans      &trans
-        &trans               &trans      &trans      &trans      &trans
-        &trans               &trans      &trans      &trans      &trans
-        &trans               &trans      &trans      &trans      &trans
-        &trans               &trans      &trans      &trans      &trans
+        default_layer {
+            display-name = "BASE";
+            bindings = <
+&launch_calc_search  &mo 1       &trans      &trans         &trans
+&kp LC(Z)            &kp LS(N9)  &kp LS(N0)  &kp KP_DIVIDE  &kp KP_MULTIPLY
+&kp LC(V)            &kp N7      &kp N8      &kp N9         &kp KP_MINUS
+&kp LC(C)            &kp N4      &kp N5      &kp N6         &kp KP_PLUS
+&kp DEL              &bt BT_CRL_ALL      &kp N2      &kp N3         &kp KP_ENTER
+&kp BSPC             &kp KP_N0   &kp COMMA   &kp KP_DOT     &kp KP_ENTER
+            >;
+        };
+
+        ble_layer {
+            display-name = "BLE";
+            bindings = <
+&kp C_AL_CALCULATOR  &bt BT_PRV  &bt BT_NXT  &bt BT_CLR  &trans
+&trans               &trans      &trans      &trans      &trans
+&trans               &trans      &trans      &trans      &trans
+&trans               &trans      &trans      &trans      &trans
+&trans               &trans      &trans      &trans      &trans
+&trans               &trans      &trans      &trans      &trans
             >;
         };
     };
