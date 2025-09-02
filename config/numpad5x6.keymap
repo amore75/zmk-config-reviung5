@@ -28,12 +28,12 @@
         default_layer {
             display-name = "BASE";
             bindings = <
-&launch_calc_search  &mo 1       &trans      &trans         &trans
-&kp LC(Z)            &kp LS(N9)  &kp LS(N0)  &kp KP_DIVIDE  &kp KP_MULTIPLY
-&kp LC(V)            &kp N7      &kp N8      &kp N9         &kp KP_MINUS
-&kp LC(C)            &kp N4      &kp N5      &kp N6         &kp KP_PLUS
-&kp DEL              &kp N1      &kp N2      &kp N3         &kp KP_ENTER
-&kp BSPC             &kp KP_N0   &kp COMMA   &kp KP_DOT     &kp KP_ENTER
+&bt BT_CLR_ALL  &mo 1       &trans      &trans         &trans
+&kp LC(Z)       &kp LS(N9)  &kp LS(N0)  &kp KP_DIVIDE  &kp KP_MULTIPLY
+&kp LC(V)       &kp N7      &kp N8      &kp N9         &kp KP_MINUS
+&kp LC(C)       &kp N4      &kp N5      &kp N6         &kp KP_PLUS
+&kp DEL         &kp N1      &kp N2      &kp N3         &kp KP_ENTER
+&kp BSPC        &kp KP_N0   &kp COMMA   &kp KP_DOT     &kp KP_ENTER
             >;
         };
 
