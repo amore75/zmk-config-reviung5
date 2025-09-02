@@ -1,22 +1,21 @@
-/* Battery sensing for nice!nano v2 (measures VDD) */
+/* Enable SAADC and expose a ZMK battery device for nice!nano v2 */
 
-&adc {            /* make sure the SAADC is enabled */
+&adc {
     status = "okay";
 };
 
  / {
-    /* Create a battery device */
     vbatt: vbatt {
-        compatible = "zmk,battery-nrf-vdd";
+        /* Option A (preferred for nice!nano v2): */
+        compatible = "zmk,battery-nrf-vddh";
+        /* If link still fails, change the line above to:
+         * compatible = "zmk,battery-nrf-vdd";
+         */
         status = "okay";
     };
 
-    /* Let ZMK find it two ways (covers all code paths) */
-    aliases {
-        battery = &vbatt;
-    };
+    /* Let ZMK find the device */
+    aliases { battery = &vbatt; };
 
-    chosen {
-        zmk,battery = &vbatt;
-    };
+    chosen { zmk,battery = &vbatt; };
 };
