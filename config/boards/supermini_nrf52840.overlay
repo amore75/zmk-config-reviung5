@@ -1,15 +1,25 @@
-/* SPDX-License-Identifier: MIT */
+/* Battery sensing for Supermini nRF52840.
+ * Try VDDH first; if your board doesn’t expose VDDH, switch to zmk,battery-nrf-vdd instead.
+ */
 
-/ {
-    chosen {
-        /* Point ZMK at our battery device */
-        zmk,battery = &bat;
+&adc {
+    status = "okay";
+};
+
+ / {
+    vbatt: vbatt {
+        /* If VDDH is not present on your hardware, change the line below to:
+         * compatible = "zmk,battery-nrf-vdd";
+         */
+        compatible = "zmk,battery-nrf-vddh";
+        status = "okay";
     };
 
-    /* Internal battery measurement via nRF VDDH (good for nice!nano v2) */
-    bat: battery {
-              compatible = "zmk,battery-nrf-vdd";
+    aliases {
+        battery = &vbatt;
+    };
 
-        status = "okay";
+    chosen {
+        zmk,battery = &vbatt;
     };
 };
