@@ -2,13 +2,14 @@
 
 / {
     chosen {
-        /* Tell ZMK which battery device to use */
-        zmk,battery = &vddh_batt;
+        /* Point ZMK at our battery device */
+        zmk,battery = &bat;
     };
 
-    /* Use the nRF52840 VDDH measurement (works when VDDH domain is present) */
-    vddh_batt: vddh_batt {
-        compatible = "zmk,battery-nrf-vddh";
+    /* Internal battery measurement via nRF VDDH (good for nice!nano v2) */
+    bat: battery {
+                compatible = "zmk,battery-nrf-vdd";
+
         status = "okay";
     };
 };
