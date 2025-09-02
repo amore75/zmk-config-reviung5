@@ -1,20 +1,14 @@
 /* SPDX-License-Identifier: MIT */
-/* ZMK board overlay for nice_nano_v2
- *
- * - No OLED / I²C setup
- * - No external power rail control
- * - Optional battery percentage via nRF VDDH (works on boards that wire VDDH
- *   to the Li-Po cell, as most nice!nano-style boards do)
- */
 
- / {
-    /* Remove this 'chosen' block if you don't want battery% reporting */
+/ {
     chosen {
+        /* Tell ZMK which battery device to use */
         zmk,battery = &vddh_batt;
     };
 
-    /* Battery gauge using the nRF52840's VDDH sense */
+    /* Use the nRF52840 VDDH measurement (works when VDDH domain is present) */
     vddh_batt: vddh_batt {
         compatible = "zmk,battery-nrf-vddh";
+        status = "okay";
     };
 };
