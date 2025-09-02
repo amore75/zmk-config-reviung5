@@ -1,15 +1,22 @@
-/* SPDX-License-Identifier: MIT */
+/* Battery sensing for nice!nano v2 (measures VDD) */
 
-/ {
-    chosen {
-        /* Point ZMK at our battery device */
-        zmk,battery = &bat;
+&adc {            /* make sure the SAADC is enabled */
+    status = "okay";
+};
+
+ / {
+    /* Create a battery device */
+    vbatt: vbatt {
+        compatible = "zmk,battery-nrf-vdd";
+        status = "okay";
     };
 
-    /* Internal battery measurement via nRF VDDH (good for nice!nano v2) */
-    bat: battery {
-                compatible = "zmk,battery-nrf-vdd";
+    /* Let ZMK find it two ways (covers all code paths) */
+    aliases {
+        battery = &vbatt;
+    };
 
-        status = "okay";
+    chosen {
+        zmk,battery = &vbatt;
     };
 };
