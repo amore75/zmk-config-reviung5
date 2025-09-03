@@ -29,9 +29,9 @@
             display-name = "BASE";
             bindings = <
 &launch_calc_search  &bt BT_CLR_ALL  &trans      &trans         &trans
-&kp LC(Z)            &kp LS(N9)      &kp LS(N0)  &kp KP_DIVIDE  &kp KP_MULTIPLY
-&kp LC(V)            &kp N7          &kp N8      &kp N9         &kp KP_MINUS
-&kp LC(C)            &kp N4          &kp N5      &kp N6         &kp KP_PLUS
+&mo 1                &kp LS(N9)      &kp LS(N0)  &kp KP_DIVIDE  &kp KP_MULTIPLY
+&kp LC(PERCENT)      &kp N7          &kp N8      &kp N9         &kp KP_MINUS
+&kp LC(N4)           &kp N4          &kp N5      &kp N6         &kp KP_PLUS
 &kp DEL              &kp N1          &kp N2      &kp N3         &kp KP_ENTER
 &kp BSPC             &kp KP_N0       &kp COMMA   &kp KP_DOT     &kp KP_ENTER
             >;
@@ -40,12 +40,12 @@
         ble_layer {
             display-name = "BLE";
             bindings = <
-&kp C_AL_CALCULATOR  &bt BT_PRV  &bt BT_NXT  &bt BT_CLR  &trans
-&trans               &trans      &trans      &trans      &trans
-&trans               &trans      &trans      &trans      &trans
-&trans               &trans      &trans      &trans      &trans
-&trans               &trans      &trans      &trans      &trans
-&trans               &trans      &trans      &trans      &trans
+&launch_calc_search  &mo 0           &trans           &trans         &trans
+&kp UP_ARROW         &kp LEFT_ARROW  &kp RIGHT_ARROW  &kp KP_DIVIDE  &kp KP_ASTERISK
+&kp DOWN_ARROW       &kp N7          &kp N8           &kp N9         &kp MINUS
+&kp LC(Z)            &kp N4          &kp N5           &kp N6         &kp PLUS
+&kp DEL              &kp N1          &kp N2           &kp N3         &kp ENTER
+&kp BACKSPACE        &kp N0          &kp COMMA        &kp DOT        &kp ENTER
             >;
         };
     };
