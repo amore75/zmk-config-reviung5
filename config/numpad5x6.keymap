@@ -30,8 +30,8 @@
             bindings = <
 &launch_calc_search  &bt BT_CLR_ALL  &trans      &trans         &trans
 &kp LC(Z)            &kp LS(N9)      &kp LS(N0)  &kp KP_DIVIDE  &kp KP_MULTIPLY
-&kp LC(PERCENT)      &kp N7          &kp N8      &kp N9         &kp KP_MINUS
-&kp LC(N4)           &kp N4          &kp N5      &kp N6         &kp KP_PLUS
+&kp PERCENT          &kp N7          &kp N8      &kp N9         &kp KP_MINUS
+&kp DOLLAR           &kp N4          &kp N5      &kp N6         &kp KP_PLUS
 &kp DEL              &kp N1          &kp N2      &kp N3         &kp KP_ENTER
 &kp BSPC             &kp KP_N0       &kp COMMA   &kp KP_DOT     &kp KP_ENTER
             >;
